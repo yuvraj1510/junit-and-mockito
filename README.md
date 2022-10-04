@@ -1,8 +1,9 @@
 # JUnit and Mockito
+
 ## JUnit
 JUnit is a unit testing open-source framework for the Java programming language. Java Developers use this framework to write and execute automated tests. In Java, there are test cases that have to be re-executed every time a new code is added. This is done to make sure that nothing in the code is broken.
 
-### Basic JUnit annotation
+### Basic JUnit annotation and methods
 * **@Test** - To represent a method/function as test case.
 * **assertEquals** - Compare two object if they are equal.
 * **assertTrue** - Asserts that a condition is true.
@@ -55,4 +56,33 @@ public void testTruncateAInFirst2Positions() {
 public class StringHelperTests {
 
 }
+```
+
+## Mockito
+Mockito is an open source testing framework for Java. The framework allows the creation of test double objects in automated unit tests for the purpose of test-driven development or behavior-driven development.
+
+### Maven Dependency
+```
+<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>4.12</version>
+	<scope>test</scope>
+</dependency>
+<dependency>
+	<groupId>org.mockito</groupId>
+	<artifactId>mockito-all</artifactId>
+	<version>1.10.19</version>
+	<scope>test</scope>
+</dependency>
+```
+### Basic Mockito methods
+* **mock(Class<?> theClass)** - Creates mock object of given class or interface.
+```
+TodoService todoServiceMock = mock(TodoService.class);
+``` 
+* **when(\<Method to mock\>).thenReturn(\<Returned mock values\>)** - Enables stubbing methods. Use it when you want the mock to return particular value when particular method is called.
+```
+List<String> todos = Arrays.asList("Learn Spring MVC", "Learn Spring", "Learn to Dance");
+when(todoServiceMock.retrieveTodos("Dummy")).thenReturn(todos);
 ```
