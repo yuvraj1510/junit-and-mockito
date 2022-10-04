@@ -144,4 +144,58 @@ then(todoServiceMock).should().deleteTodo(stringArgumentCaptor.capture());
 assertThat(stringArgumentCaptor.getValue(), is("Learn to Dance"));
 ```
 
-
+### Hamcrest Matchers:
+* Maven Dependency
+```
+<dependency>
+    <groupId>org.hamcrest</groupId>
+    <artifactId>hamcrest-library</artifactId>
+    <version>1.3</version>
+    <scope>test</scope>
+</dependency> 
+```
+* Examples:
+```
+    @Test
+	public void test() {
+		List<Integer> scores = Arrays.asList(99, 100, 101, 105);
+		
+		assertThat(scores, hasSize(4));
+		assertThat(scores, hasItems(99, 100));
+		
+		assertThat(scores, everyItem(greaterThan(90)));
+		assertThat(scores, everyItem(lessThan(190)));
+		
+		assertThat("", isEmptyString());
+		assertThat(null, isEmptyOrNullString());
+		
+		Integer[] marks = {1, 2, 3};
+		
+		assertThat(marks, arrayWithSize(3));
+		assertThat(marks, arrayContaining(1, 2, 3));
+		assertThat(marks, arrayContainingInAnyOrder(3, 2, 1));
+		
+	}
+```
+### Mockito Annotations:
+* **@Mock** - Mark a field as a mock. 
+```
+@Mock
+TodoService todoServiceMock;
+```
+* **@InjectMocks** - Mark a field on which injection should be performed. 
+```
+@InjectMocks
+TodoBusinessImpl todoBusinessImpl;
+```
+* **@Captor** - Allows shorthand org.mockito.ArgumentCaptor creation on fields. 
+```
+@Captor
+ArgumentCaptor<String> stringArgumentCaptor;
+```
+### 
+Why does Mockito not allow stubbing final and private methods?
+* Important Link - 
+    * https://github.com/mockito/mockito/wiki/Mockito-And-Private-Methods
+    * https://github.com/mockito/mockito/wiki/FAQ
+    
